@@ -43,6 +43,8 @@ describe('My First Test Suite', () =>
         //cy.log(cy.get('.brand').text())
         //cy.log(logo.text())
 
-        
+        cy.get('.cart-icon > img').click()
+        cy.contains('PROCEED TO CHECKOUT').click()
+        cy.contains('Place Order').click()
     })
 })
