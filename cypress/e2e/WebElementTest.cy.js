@@ -1,3 +1,5 @@
+
+
 describe('Web Element Test Suite', ()=>
 {
     it('TC_CheckBoxes', ()=>
@@ -57,4 +59,29 @@ describe('Web Element Test Suite', ()=>
         cy.visit('https://rahulshettyacademy.com/AutomationPractice/')
         cy.get('input[value="radio2"]').check().should('be.checked').and('have.value','radio2')
     })
+
+    it('TC_Popups', ()=>
+    {
+        //alerts are automatically accepted byu cypress
+        cy.visit('https://rahulshettyacademy.com/AutomationPractice/')
+        //Check the alert
+        cy.get('#alertbtn').click()
+        //Check the confirmation alert
+        cy.get('[value="Confirm"]').click()
+        //whenever web page trigger an alert oit automatically call a event "window:alert".
+        //Window:alert
+        cy.on('window:alert',(str)=>
+        {
+            //Mocha will help with assertions in cypress
+            //str variable will store the value of the alert message & using Mocha functions we can verify it
+            expect(str).to.equal('Hello , share this practice page and share your knowledge')
+        })
+
+        //Window:confirm
+        cy.on('window:confirm',(str)=>
+        {
+            expect(str).to.equal('Hello , Are you sure you want to confirm?')
+        })
+    })
+
 })
