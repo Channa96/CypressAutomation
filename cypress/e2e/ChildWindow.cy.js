@@ -13,7 +13,7 @@ describe('HandleChildWindow', ()=>
         cy.origin("https://www.qaclickacademy.com",()=>
         {
             cy.get("#navbarSupportedContent a[href*='about']").click();//#navbarSupportedContent > ul > li:nth-child(4) > a
-            cy.get('.mt-50 h2').should('contain','QAClick Academy');
+            cy.get('.mt-50 h2').should('contain','QAClick Academy'); 
         })
 
     })
