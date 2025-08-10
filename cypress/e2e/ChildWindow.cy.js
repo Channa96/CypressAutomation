@@ -25,12 +25,13 @@ describe('HandleChildWindow', ()=>
         cy.get('tr td:nth-child(2)').each(($e1, index, $list) => 
         {
             //declairing a veriable
-            const text=$e1.text()
-            if(text.includes("Python"))
+            const name=$e1.text()
+            if(name.includes("Python"))
             {
                 //.next() function use for navigate to the immidiate sibling element from the desired element
                 cy.get("tr td:nth-child(2)").eq(index).next().then(function(price)
                 {
+                    //priceText is a variable
                     const priceText = price.text()
                     expect(priceText).to.equal('25')
                 })
