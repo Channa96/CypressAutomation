@@ -26,3 +26,10 @@
 
 /// <reference types="cypress-xpath" />
 /// <reference types="cypress" />
+
+Cypress.Commands.add('submitFormDetails', () => {
+    cy.get("#country").type("India");
+    cy.wait(2000);
+    cy.get(".suggestions ul li a").click();
+    cy.get(".btn-success").click();
+});
