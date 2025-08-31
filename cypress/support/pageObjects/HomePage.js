@@ -7,11 +7,12 @@ class HomePage
     }
     login(userName, password)
     {
-    cy.get('#username').type(userName);
-    cy.get('#password').type(password);
-    cy.get('#terms').click();
-    cy.get('#signInBtn').click();
-    return new ProductPage();
+        cy.get('#username').type(Cypress.env("userName"));
+        cy.get('#password').type(Cypress.env("passWord"));
+        cy.get('#terms').click();
+        cy.pause();
+        cy.get('#signInBtn').click();
+        return new ProductPage();
     }
 }
 export default HomePage;

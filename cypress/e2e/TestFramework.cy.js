@@ -11,11 +11,11 @@ describe('Ecommerce Test Suite', () => {
 
   it('Submit Order', function() {
 
-    const productNameOne = this.data.firstProductName;
-    const productNameTwo = this.data.secondProductName;
+    const productNameOne = Cypress.env("firstProductName");
+    const productNameTwo = Cypress.env("secondProductName");
 
     //Load URL & Login
-    this.homePage.navigateToURL("https://rahulshettyacademy.com/loginpagePractise/#");
+    this.homePage.navigateToURL(Cypress.env("url") + "/loginpagePractise/#");
     const productPage = this.homePage.login(this.data.userName, this.data.passWord);
 
     //Verify Login

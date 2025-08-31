@@ -80,7 +80,7 @@ describe('Web Element Test Suite', ()=>
         //Window:confirm
         cy.on('window:confirm',(str)=>
         {
-            expect(str).to.equal('Hello , Are you sure you want to confirm?')
+            expect(str).to.equal('Hello, Are you sure you want to confirm?')
         })
     })
 
