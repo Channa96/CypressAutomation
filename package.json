@@ -3,16 +3,24 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx cypress run",
+    "cypress:open": "npx cypress open",
+    "posttest": "npx mochawesome-merge cypress/reports/mochawesome/*.json > cypress/reports/mochawesome/mochawesome.json && npx marge cypress/reports/mochawesome/mochawesome.json -f report -o cypress/reports/mochawesome",
+    "cy:run:headed": "npx cypress run --headed --browser chrome",
+    "record": "npx cypress run --record --key 11b7c346-74da-4cde-aba2-7e273bf1cab8"
   },
+
   "author": "Channa",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "cypress-iframe": "^1.0.1",
     "cypress-mochawesome-reporter": "^4.0.2",
     "cypress-xpath": "^2.0.1"
   },
   "dependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^23.0.0",
+    "@cypress/browserify-preprocessor" : "latest",
     "cypress": "^14.5.4"
   }
 }
