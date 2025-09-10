@@ -29,6 +29,7 @@ export default defineConfig({
   projectId: "c5psr2",
   e2e: {
     setupNodeEvents,
-    specPattern:"cypress/e2e/BDD/*.feature",
+    //specPattern:"cypress/e2e/BDD/*.feature",
+    specPattern:"cypress/e2e/*"
   }
 });

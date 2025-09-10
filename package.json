@@ -10,6 +10,7 @@
     "record": "npx cypress run --record --key 11b7c346-74da-4cde-aba2-7e273bf1cab8"
   },
 
+
   "author": "Channa",
   "license": "ISC",
   "description": "",
