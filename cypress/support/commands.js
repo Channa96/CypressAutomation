@@ -33,3 +33,12 @@ Cypress.Commands.add('submitFormDetails', () => {
     cy.get(".suggestions ul li a").click();
     cy.get(".btn-success").click();
 });
+
+Cypress.Commands.add('LoginAPI', () => {
+    cy.request('POST', 'https://rahulshettyacademy.com/api/ecom/auth/login',
+    {userEmail: "channa.kumara255@gmail.com", userPassword: "Channa22@@"}).then((response) => {
+        expect(response.status).to.eq(200);
+        //creating environment variable called token and storing the value of token in it
+        Cypress.env('token', response.body.token);
+    });
+})

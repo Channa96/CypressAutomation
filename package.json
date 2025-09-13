@@ -17,7 +17,8 @@
   "devDependencies": {
     "cypress-iframe": "^1.0.1",
     "cypress-mochawesome-reporter": "^4.0.2",
-    "cypress-xpath": "^2.0.1"
+    "cypress-xpath": "^2.0.1",
+    "neat-csv": "^6.0.0"
   },
   "dependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^23.0.0",
