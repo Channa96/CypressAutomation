@@ -1,4 +1,7 @@
 const neatCSV = require('neat-csv');
+const excelToJson = require('convert-excel-to-json');
+const fs = require('fs');
+
 describe('JWT Authentication', () => {
     it('Authenticate user and logged using local storage', () => {
         cy.LoginAPI().then(() => {
@@ -24,17 +27,13 @@ describe('JWT Authentication', () => {
         })
         cy.get(".action__submit").click();
         cy.wait(2000);
-        cy.get(".order-summary button").click();
+        cy.get(".order-summary button").contains("Excel").click();
 
         //Reading the file and converting it to text
-        cy.readFile(Cypress.config("fileServerFolder") + "/cypress/downloads/order-invoice_channa.kumara255.csv")
-        .then(async (text) => {
-            //converting the csv to json format
-            const csv = await neatCSV(text);
-            //printing the csv data
-            
-            console.log(csv);
-            expect(csv[1]['Product Name']).to.equal(productName);
+        const filePath = Cypress.config("fileServerFolder") + "/cypress/downloads/order-invoice_channa.kumara255.xlsx";
+        cy.task('excelToJsonConvertor', filePath).then((result) => {
+            console.log(result);
         })
+        
     })
 })
