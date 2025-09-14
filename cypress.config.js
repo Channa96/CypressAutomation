@@ -6,6 +6,7 @@ import mochawesome from 'cypress-mochawesome-reporter/plugin.js';
 import sqlServer from 'cypress-sql-server';
 import excelToJson from "convert-excel-to-json";
 import fs from "fs";
+import ExcelJs from "exceljs";
 
 async function setupNodeEvents(on, config) 
 {
@@ -34,6 +35,23 @@ async function setupNodeEvents(on, config)
         return result;
     }
   })
+  on('task',{
+      async writeExcelFile({searchText, replaceText, change, filePath}) 
+      {
+        const workBook = new ExcelJs.Workbook();
+        await workBook.xlsx.readFile(filePath);
+        const workSheet = workBook.getWorksheet("Sheet1")
+        const outPut = await readExcelFile(workSheet, searchText);
+        const cell = workSheet.getCell(outPut.row, outPut.col + change.colChange);
+        cell.value = replaceText
+        return workBook.xlsx.writeFile(filePath).then(() => {
+            return true;
+        })
+        .catch((err) => {
+            throw false;
+        });
+      }
+    })
 
   on(
     "file:preprocessor",
@@ -42,6 +60,19 @@ async function setupNodeEvents(on, config)
 
   mochawesome(on);
   return config;
+}
+
+async function readExcelFile(workSheet,searchText) {
+    let outPut = {row:0, col:0};
+    workSheet.eachRow((row, rowNumber) => {
+        row.eachCell((cell, colNumber) => {
+            if(cell.value === searchText){
+                outPut.row = rowNumber;
+                outPut.col = colNumber;
+            }
+        })
+    })
+    return outPut;
 }
 
 export default defineConfig({
@@ -57,6 +88,7 @@ export default defineConfig({
   e2e: {
     setupNodeEvents,
     //specPattern:"cypress/e2e/BDD/*.feature",
-    specPattern:"cypress/e2e/*"
+    //specPattern:"cypress/e2e/*"
+    specPattern:"cypress/e2e/Excel/*"
   }
 });
