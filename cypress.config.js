@@ -87,8 +87,10 @@ export default defineConfig({
   projectId: "c5psr2",
   e2e: {
     setupNodeEvents,
+    experimentalStudio: true,
     //specPattern:"cypress/e2e/BDD/*.feature",
     //specPattern:"cypress/e2e/*"
-    specPattern:"cypress/e2e/Excel/*"
+    //specPattern:"cypress/e2e/Excel/*"
+    specPattern:"cypress/e2e/RecordTestByCypress/*"
   }
 });
